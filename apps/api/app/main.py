@@ -1,12 +1,27 @@
-"""DNYFTECH API — version 0.2.0."""
+"""DNYFTECH API — version 0.3.0."""
 
 import os
 from flask import Flask, jsonify
+from flask_cors import CORS
 
 APP_NAME = os.getenv("DNYFTECH_APP_NAME", "DNYFTECH API")
-APP_VERSION = os.getenv("DNYFTECH_APP_VERSION", "0.2.0")
+APP_VERSION = os.getenv("DNYFTECH_APP_VERSION", "0.3.0")
 
 app = Flask(__name__)
+
+# Allow only the local development website to access the API.
+CORS(
+    app,
+    resources={
+        r"/*": {
+            "origins": [
+                "http://127.0.0.1:8080",
+                "http://localhost:8080"
+            ],
+            "methods": ["GET"]
+        }
+    }
+)
 
 
 @app.get("/")

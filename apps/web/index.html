@@ -145,6 +145,55 @@
       </div>
     </section>
 
+    <section class="section-wrap api-section" id="platform-status">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">LIVE PLATFORM / 002</p>
+          <h2>System <span class="muted">status.</span></h2>
+        </div>
+        <p class="section-description">
+          Live information supplied by the DNYFTECH API.
+        </p>
+      </div>
+
+      <div class="api-panel">
+        <div class="api-panel-top">
+          <div>
+            <span class="api-label">BACKEND CONNECTION</span>
+            <p id="api-status" class="api-status" role="status"
+               aria-live="polite">CONNECTING...</p>
+          </div>
+          <button class="api-refresh" id="api-refresh" type="button">
+            ↻ Refresh
+          </button>
+        </div>
+
+        <div class="api-details">
+          <div>
+            <span class="api-label">PLATFORM</span>
+            <strong id="api-platform">DNYFTECH</strong>
+          </div>
+          <div>
+            <span class="api-label">API VERSION</span>
+            <strong id="api-version">Loading...</strong>
+          </div>
+          <div>
+            <span class="api-label">TAGLINE</span>
+            <strong id="api-tagline">Engineering What's Next.</strong>
+          </div>
+        </div>
+
+        <div class="api-divisions">
+          <span class="api-label">ACTIVE DIVISIONS</span>
+          <div id="api-division-list" class="api-division-list">
+            <span class="api-placeholder">Loading divisions...</span>
+          </div>
+        </div>
+
+        <p id="api-error" class="api-error" role="status"></p>
+      </div>
+    </section>
+
     <section class="manifesto" id="about">
       <div class="section-wrap manifesto-inner">
         <p class="eyebrow">OUR PRINCIPLES / 002</p>

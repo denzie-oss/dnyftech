@@ -471,3 +471,124 @@ h1 {
     transition-duration: .01ms !important;
   }
 }
+
+
+/* DNYFTECH live API panel */
+.api-section {
+  padding-top: 35px;
+}
+
+.api-panel {
+  padding: 28px;
+  border: 1px solid rgba(83, 216, 255, 0.2);
+  border-radius: 18px;
+  background: rgba(11, 16, 32, 0.78);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.16);
+}
+
+.api-panel-top,
+.api-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.api-panel-top {
+  align-items: center;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.api-label {
+  display: block;
+  margin-bottom: 9px;
+  color: #8c9ab4;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+}
+
+.api-status {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.api-status[data-state="online"] {
+  color: #53d8ff;
+}
+
+.api-status[data-state="offline"] {
+  color: #ff7b8b;
+}
+
+.api-status[data-state="loading"] {
+  color: #a8b4ca;
+}
+
+.api-refresh {
+  padding: 10px 16px;
+  border: 1px solid rgba(83, 216, 255, 0.35);
+  border-radius: 9px;
+  background: transparent;
+  color: #53d8ff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.api-refresh:hover {
+  background: rgba(83, 216, 255, 0.09);
+}
+
+.api-details {
+  padding: 24px 0;
+}
+
+.api-details strong {
+  color: #edf4ff;
+  font-size: 0.95rem;
+}
+
+.api-divisions {
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.api-division-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.api-division {
+  padding: 8px 12px;
+  border: 1px solid rgba(124, 108, 255, 0.3);
+  border-radius: 30px;
+  color: #c8c2ff;
+  background: rgba(124, 108, 255, 0.08);
+  font-size: 0.82rem;
+}
+
+.api-placeholder,
+.api-error {
+  color: #a8b4ca;
+  font-size: 0.85rem;
+}
+
+.api-error {
+  margin: 16px 0 0;
+  color: #ff9ba7;
+}
+
+@media (max-width: 600px) {
+  .api-panel {
+    padding: 20px;
+  }
+
+  .api-details {
+    flex-direction: column;
+    gap: 18px;
+  }
+}

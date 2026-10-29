@@ -27,3 +27,14 @@ def test_api_docs():
     response = client.get("/api/v1/docs")
     assert response.status_code == 200
     assert len(response.json["endpoints"]) == 3
+
+
+def test_local_frontend_cors():
+    response = client.get(
+        "/api/v1/info",
+        headers={"Origin": "http://127.0.0.1:8080"}
+    )
+    assert response.status_code == 200
+    assert response.headers["Access-Control-Allow-Origin"] == (
+        "http://127.0.0.1:8080"
+    )

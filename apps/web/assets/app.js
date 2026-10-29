@@ -39,3 +39,75 @@ if (menuToggle && navigation) {
     }
   });
 }
+
+
+// DNYFTECH live API integration.
+const API_BASE_URL = "http://127.0.0.1:8000";
+
+const apiStatus = document.getElementById("api-status");
+const apiVersion = document.getElementById("api-version");
+const apiPlatform = document.getElementById("api-platform");
+const apiTagline = document.getElementById("api-tagline");
+const apiDivisionList = document.getElementById("api-division-list");
+const apiError = document.getElementById("api-error");
+const apiRefresh = document.getElementById("api-refresh");
+
+async function loadPlatformStatus() {
+  if (!apiStatus) return;
+
+  apiStatus.textContent = "CONNECTING...";
+  apiStatus.dataset.state = "loading";
+  apiError.textContent = "";
+
+  try {
+    const [healthResponse, infoResponse] = await Promise.all([
+      fetch(`${API_BASE_URL}/health`),
+      fetch(`${API_BASE_URL}/api/v1/info`)
+    ]);
+
+    if (!healthResponse.ok || !infoResponse.ok) {
+      throw new Error("The API returned an unsuccessful response.");
+    }
+
+    const health = await healthResponse.json();
+    const info = await infoResponse.json();
+
+    if (health.status !== "ok") {
+      throw new Error("The API health check did not pass.");
+    }
+
+    apiStatus.textContent = "● ONLINE";
+    apiStatus.dataset.state = "online";
+    apiPlatform.textContent = info.platform;
+    apiVersion.textContent = info.version;
+    apiTagline.textContent = info.tagline;
+
+    apiDivisionList.replaceChildren();
+
+    info.divisions.forEach((division) => {
+      const item = document.createElement("span");
+      item.className = "api-division";
+      item.textContent = division;
+      apiDivisionList.appendChild(item);
+    });
+  } catch (error) {
+    apiStatus.textContent = "● OFFLINE";
+    apiStatus.dataset.state = "offline";
+    apiVersion.textContent = "Unavailable";
+    apiDivisionList.replaceChildren();
+
+    const message = document.createElement("span");
+    message.className = "api-placeholder";
+    message.textContent = "Division data unavailable.";
+    apiDivisionList.appendChild(message);
+
+    apiError.textContent =
+      "Cannot reach the API. Start the Flask server on port 8000 and refresh.";
+  }
+}
+
+if (apiRefresh) {
+  apiRefresh.addEventListener("click", loadPlatformStatus);
+}
+
+loadPlatformStatus();
